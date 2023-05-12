@@ -1,0 +1,33 @@
+name: project cicd pipeline
+
+on: 
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: step1-checkout repository to ubuntu runner 
+        uses: actions/checkout@v3
+
+      - name: step2-install node
+        uses: actions/setup-node@v3
+        with: 
+        node-version: 16
+
+      - name: step3-install dependencies
+        run: npm install 
+
+      - name: step4-run htmlhint
+        run: npx htmlhint "**/*.html"
+
+      - name: step5-run prettier
+        run: npx prettier --check "**/*.{html,css,js}"
+
