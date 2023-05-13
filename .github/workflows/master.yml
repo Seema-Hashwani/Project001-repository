@@ -19,8 +19,6 @@ jobs:
 
       - name: step2-install node
         uses: actions/setup-node@v3
-        with: 
-        node-version: 16
 
       - name: step3-install dependencies
         run: npm install 
